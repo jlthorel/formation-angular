@@ -5,6 +5,7 @@ import { Product } from '../model/product';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
+  
   let fixture: ComponentFixture<ProductComponent>;
 
   beforeEach(async () => {
@@ -17,19 +18,31 @@ describe('ProductComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    
+    component.product = {
+      title: 'test',
+      price: 5,
+      stock: 15,
+    } as Product;
   });
 
   it('should create', () => {
+    component.product = {
+      title: 'test',
+      price: 5,
+      stock: 15,
+    } as Product;
+
     expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
+  it('should have H3 directive', () => {
     const expectedText = 'test - 5$';
 
     component.product = {
       title: 'test',
-      price: 5
+      price: 5,
+      stock: 15,
     } as Product;
 
     fixture.detectChanges();
