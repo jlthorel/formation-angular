@@ -1,15 +1,35 @@
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
+
+
+@Component({
+  selector: 'app-product',
+  template: ''
+})
+class ProductFakeComponent {
+
+}
+
+
+@Component({
+  selector: 'app-menu',
+  template: ''
+})
+class MenuFakeComponent {
+
+}
+
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
+
       declarations: [
-        AppComponent
+        AppComponent,
+        ProductFakeComponent,
+        MenuFakeComponent
       ],
     }).compileComponents();
   });
@@ -26,10 +46,18 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('myApp');
   });
 
-  it('should render title', () => {
+
+
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('span')?.textContent).toContain('myApp app is running!');
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it('should display a product', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+
+    expect(fixture.debugElement.query(By.directive(ProductFakeComponent))).toBeTruthy();
   });
 });

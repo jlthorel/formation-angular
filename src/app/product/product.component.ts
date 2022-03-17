@@ -8,7 +8,8 @@ import { Product } from '../model/product';
 })
 export class ProductComponent implements OnInit {
   @Input() product! : Product
-  @Output() addToBasket : EventEmitter<Product> = new EventEmitter<Product>();
+  @Input() indexProduct! : number
+  @Output() addToBasket : EventEmitter<any> = new EventEmitter<Product>();
 
   constructor() { }
 
@@ -16,6 +17,6 @@ export class ProductComponent implements OnInit {
   }
 
   addToBasketFct() : void {
-    this.addToBasket.emit(this.product)
+    this.addToBasket.emit({"product": this.product, "index" : this.indexProduct})
   }
 }
