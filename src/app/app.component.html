@@ -1,3 +1,32 @@
-<h1> My First Angular Aplication : {{title}}</h1>
-<span>{{title}} app is running! </span>
-<router-outlet></router-outlet>
+<app-menu></app-menu>
+
+
+<div class="container">
+
+  <header class="jumbotron hero-spacer">
+    <h1>Welcome to Zenika Ecommerces</h1>
+    <p>Your basket amounts to {{total}}€</p>
+    <p><a class="btn btn-primary btn-large">See my basket</a></p>
+  </header>
+
+  <hr>
+
+  <div class="row">
+      <div class="col-lg-12">
+          <h2>Last products</h2>
+      </div>
+  </div>
+  <div class="row text-center">
+    <app-product [product]=listProduct[0] (addToBasket)="onAddToBasket($event)"></app-product>
+    <app-product [product]=listProduct[1] (addToBasket)="onAddToBasket($event)"></app-product>
+    <app-product [product]=listProduct[2] (addToBasket)="onAddToBasket($event)"></app-product>
+    <app-product [product]=listProduct[3] (addToBasket)="onAddToBasket($event)"></app-product>
+  </div>
+
+  <hr>
+
+  <footer>
+      Copyright &copy; Your Website 2020
+  </footer>
+
+</div>
