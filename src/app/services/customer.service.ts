@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from '../model/product';
 
 @Injectable({
@@ -6,8 +8,9 @@ import { Product } from '../model/product';
 })
 export class CustomerService {
  basket : Product[] = [];
+ baseUrl : string = `http://13.37.46.78:8080/rest`; 
 
-  constructor() { }
+  constructor(private httpClient : HttpClient) { }
 
   addProduct(product : Product) :void {
     this.basket.push(product);
@@ -21,5 +24,9 @@ export class CustomerService {
     })
     return total;
 
+  }
+
+  getBascket(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.baseUrl}/basket`);
   }
 }

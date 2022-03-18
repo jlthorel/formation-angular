@@ -1,51 +1,29 @@
+import { HttpClient } from '@angular/common/http';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Product } from '../model/product';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
+  
   listProduct: Product[] = [];
+  baseUrl : string = `http://13.37.46.78:8080/rest`; 
 
-  constructor() {
-
-    this.listProduct = [
-      {
-        title: 'ZZMen SWeatshirt',
-        price: 39,
-        description: 'C0D1NG_TH3_WORLD BIO',
-        photo: 'https://s3.eu-central-1.amazonaws.com/balibart-s3/Products/5acf344514006a7fe670e2eb/Mockups/front.png',
-        stock: 5,
-      },
-      {
-        title: 'Men T-Shirt',
-        price: 19,
-        description: 'bio T-Shirt with CREWNECk',
-        photo: 'https://s3.eu-central-1.amazonaws.com/balibart-s3/Products/5b2911e4ab33424aec592bd6/Mockups/front.png',
-        stock: 15,
-      },
-      {
-        title: 'T-Shirt women',
-        price: 30,
-        description: 'bio T-Shirt with CREWNECk',
-        photo: 'https://s3.eu-central-1.amazonaws.com/balibart-s3/Products/5b290d26ab33424aec592bd4/Mockups/front.png',
-        stock: 7,
-      },
-      {
-        title: 'Tote bag',
-        price: 12,
-        description: 'C0D1NG_TH3_WORDL, Bio tote Bag',
-        photo: 'https://s3.eu-central-1.amazonaws.com/balibart-s3/Products/5acf160814006a7fe670e2dd/Mockups/front.png',
-        stock: 3,
-      },
-    ];
-
-
+  constructor(private httpClient : HttpClient) {
   }
 
-  getProducts(): Product[] {
-    return this.listProduct;
+  getProducts() : Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.baseUrl}/products`)
+    .pipe(
+      map((data: Product[])  => {
+        return data;
+      })
+    );
   }
 
   isTheLast(product: Product): boolean {
@@ -57,9 +35,7 @@ export class ProductService {
     return product.stock !== 0;
   }
   
-  decreaseStock(indexProduct: number): void {
-    if (this.listProduct[indexProduct].stock > 0) {
-      this.listProduct[indexProduct].stock--;
-    }
+  decreaseStock(product: Product): void {
+    product.stock --;
   }
 }

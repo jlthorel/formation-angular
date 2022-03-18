@@ -17,14 +17,16 @@
     </div>
   </div>
   <div class="row text-center">
-    <ng-container *ngFor="let oneProduct of listProduct | sortproduct : sortBy; let i=index">
-      <ng-container *ngIf="oneProduct.stock > 0">
-        <app-product [product]="oneProduct" [indexProduct]="i" (addToBasket)="onAddToBasket($event)"></app-product>
+    <ng-container *ngIf="(listProduct$ | async ) as listProduct">
+      <ng-container *ngFor="let oneProduct of listProduct | sortproduct : sortBy; let i=index">
+        <ng-container *ngIf="oneProduct.stock > 0">
+          <app-product [product]="oneProduct" [indexProduct]="i" (addToBasket)="onAddToBasket($event)"></app-product>
+        </ng-container>
       </ng-container>
     </ng-container>
   </div>
-  <div class="row"> 
-    <button (click)="onSort('title')">Title</button> 
+  <div class="row">
+    <button (click)="onSort('title')">Title</button>
     <button (click)="onSort('price')">Price</button>
     <button (click)="onSort('stock')">Stock</button>
   </div>

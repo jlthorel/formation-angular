@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProductComponent } from './product/product.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
@@ -26,6 +28,7 @@ const welcomeMessage: string = 'myApp';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     CommonModule
   ],
   providers: [
