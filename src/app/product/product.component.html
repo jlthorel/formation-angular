@@ -4,7 +4,7 @@
     <div class="thumbnail" [ngClass]="{'lastProduct': product.stock === 1}">
         <img src="{{product.photo}}" alt="">
         <div class="caption">
-            <h3>{{product.title}} - {{product.price}}$</h3>
+            <h3>{{product.title | uppercase }} - {{product.price | currency: 'EUR' : 'symbol' : '.2-2'}}</h3>
             <p>Stock {{product.stock}}</p>
             <p>C0D1NG_TH3_W0RLD BIO HOODIE - MEN</p>
             <p>

@@ -12,7 +12,7 @@ export class ProductService {
 
     this.listProduct = [
       {
-        title: 'Men SWeatshirt',
+        title: 'ZZMen SWeatshirt',
         price: 39,
         description: 'C0D1NG_TH3_WORLD BIO',
         photo: 'https://s3.eu-central-1.amazonaws.com/balibart-s3/Products/5acf344514006a7fe670e2eb/Mockups/front.png',
@@ -52,6 +52,11 @@ export class ProductService {
     return product.stock === 1
   }
 
+  
+  isAvailable(product: Product): boolean {
+    return product.stock !== 0;
+  }
+  
   decreaseStock(indexProduct: number): void {
     if (this.listProduct[indexProduct].stock > 0) {
       this.listProduct[indexProduct].stock--;

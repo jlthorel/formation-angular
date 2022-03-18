@@ -7,13 +7,21 @@ import { MenuComponent } from './menu/menu.component';
 import { ProductComponent } from './product/product.component';
 import { CommonModule } from '@angular/common';
 
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+
+import localeFr from '@angular/common/locales/fr';
+import { SortproductPipe } from './pipe/sortproduct.pipe';
+
+registerLocaleData(localeFr);
 const welcomeMessage: string = 'myApp';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    ProductComponent
+    ProductComponent,
+    SortproductPipe
   ],
   imports: [
     BrowserModule,
@@ -21,7 +29,8 @@ const welcomeMessage: string = 'myApp';
     CommonModule
   ],
   providers: [
-    {provide: 'welcomeMessage', useValue: welcomeMessage}
+    {provide: 'welcomeMessage', useValue: welcomeMessage},
+    {provide: LOCALE_ID, useValue: navigator.language}
     ],
   bootstrap: [AppComponent]
 })

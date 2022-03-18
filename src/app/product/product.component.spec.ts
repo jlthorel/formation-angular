@@ -2,23 +2,29 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ProductComponent } from './product.component';
 import { Product } from '../model/product';
+import { CommonModule } from '@angular/common';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
-  
+
   let fixture: ComponentFixture<ProductComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductComponent ]
+      imports: [
+        CommonModule
+      ],
+      declarations: [
+        ProductComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
-    
+
     component.product = {
       title: 'test',
       price: 5,
@@ -37,7 +43,7 @@ describe('ProductComponent', () => {
   });
 
   it('should have H3 directive', () => {
-    const expectedText = 'test - 5$';
+    const expectedText = 'TEST - €5.00';
 
     component.product = {
       title: 'test',
@@ -53,3 +59,7 @@ describe('ProductComponent', () => {
     expect(text).toEqual(expectedText);
   });
 });
+function localeFr(localeFr: any) {
+  throw new Error('Function not implemented.');
+}
+
