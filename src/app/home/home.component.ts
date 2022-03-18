@@ -1,19 +1,16 @@
-import { Inject, OnInit } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
-import { Product } from './model/product';
-import { CustomerService } from './services/customer.service';
-import { ProductService } from './services/product.service';
-
-
+import { Product } from '../model/product';
+import { CustomerService } from '../services/customer.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class AppComponent  implements OnInit {
+export class HomeComponent implements OnInit {
+
 
   total: number = 0;
   sortBy: string = "title";
@@ -46,7 +43,4 @@ export class AppComponent  implements OnInit {
   onSort(property: string) {
     this.sortBy = property;
   }
-
-
-  
 }

@@ -26,7 +26,11 @@ export class CustomerService {
 
   }
 
-  getBascket(): Observable<Product[]> {
+  getBascketHttp(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(`${this.baseUrl}/basket`);
+  }
+
+  getBascket() : Product[] {
+    return this.basket
   }
 }

@@ -38,4 +38,6 @@ export class ProductService {
   decreaseStock(product: Product): void {
     product.stock --;
   }
+
+ 
 }

@@ -14,6 +14,8 @@ import { registerLocaleData } from '@angular/common';
 
 import localeFr from '@angular/common/locales/fr';
 import { SortproductPipe } from './pipe/sortproduct.pipe';
+import { HomeComponent } from './home/home.component';
+import { BasketComponent } from './basket/basket.component';
 
 registerLocaleData(localeFr);
 const welcomeMessage: string = 'myApp';
@@ -23,7 +25,9 @@ const welcomeMessage: string = 'myApp';
     AppComponent,
     MenuComponent,
     ProductComponent,
-    SortproductPipe
+    SortproductPipe,
+    HomeComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,
